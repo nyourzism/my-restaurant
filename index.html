@@ -26,6 +26,7 @@
     <img src="images/logo.png" alt="โลโก้ร้าน Hungry Bowl" class="w-30 h-30 mx-auto object-cover rounded-full border-4 border-white">
     <h1 class="text-3xl font-bold mt-4">Hungry Bowl</h1>
     <p class="text-brand-100">อาหารตามสั่งรสมือแม่ หน้าโรงเรียน</p>
+    <p id="greeting" class="mt-3 inline-block bg-white/15 px-4 py-1">ยินดีต้อนรับ</p>
   </header>
 
   <main class="max-w-3xl mx-auto px-4 py-6 space-y-4">
@@ -46,19 +47,79 @@
           <img src="images/kaprao.png" alt="ข้าวกะเพราไข่ดาว" class="w-full aspect-square object-cover">
           <h3 class="font-bold mt-2">ข้าวกะเพราไข่ดาว</h3>
           <p class="text-brand-700">60 บาท</p>
+          <button type="button" class="add-btn mt-3 w-full bg-brand-600 text-white py-2 hover:bg-brand-700 cursor-pointer" data-name="ข้าวกะเพราไข่ดาว" data-price="60">เพิ่มลงตะกร้า</button>
         </article>
         <article class="bg-white border border-brand-200 p-3 text-center">
           <img src="images/padthai.png" alt="ผัดไทยกุ้งสด" class="w-full aspect-square object-cover">
           <h3 class="font-bold mt-2">ผัดไทยกุ้งสด</h3>
           <p class="text-brand-700">70 บาท</p>
+          <button type="button" class="add-btn mt-3 w-full bg-brand-600 text-white py-2 hover:bg-brand-700 cursor-pointer" data-name="ผัดไทยกุ้งสด" data-price="70">เพิ่มลงตะกร้า</button>
         </article>
         <article class="bg-white border border-brand-200 p-3 text-center">
           <img src="images/mango.png" alt="ข้าวเหนียวมะม่วง" class="w-full aspect-square object-cover">
           <h3 class="font-bold mt-2">ข้าวเหนียวมะม่วง</h3>
           <p class="text-brand-700">50 บาท</p>
+          <button type="button" class="add-btn mt-3 w-full bg-brand-600 text-white py-2 hover:bg-brand-700 cursor-pointer" data-name="ข้าวเหนียวมะม่วง" data-price="50">เพิ่มลงตะกร้า</button>
         </article>
       </div>
     </section>
+    <!-- ตะกร้า -->
+    <section id="cart" class="bg-white border border-brand-200 px-6 py-4">
+      <div class="flex items-center gap-3 mb-2">
+        <img src="images/cart.png" alt="" class="w-14 h-14">
+        <h2 class="text-xl font-bold text-brand-700">ตะกร้าของฉัน <span id="cart-count" class="text-base font-normal text-slate-500">0 รายการ</span></h2>
+      </div>
+      <p id="cart-empty" class="text-slate-500">ยังไม่มีเมนูในตะกร้า</p>
+      <ul id="cart-list" class="space-y-2"></ul>
+      <p class="mt-3 text-right text-lg font-bold">รวม <span id="cart-total">0</span> บาท</p>
+    </section>
+
+    <!-- บัตรคิว -->
+    <section class="bg-white border border-brand-200 px-6 py-4">
+      <div class="flex items-center gap-3 mb-2">
+        <img src="images/queue.png" alt="" class="w-14 h-14">
+        <h2 class="text-xl font-bold text-brand-700">รับบัตรคิว</h2>
+      </div>
+      <p>ตอนนี้ร้านกำลังเรียกคิวที่ <span id="now-serving" class="font-bold text-brand-700">0</span></p>
+      <button id="take-queue" type="button" class="mt-2 bg-brand-600 text-white px-4 py-2 hover:bg-brand-700 cursor-pointer">รับบัตรคิว</button>
+      <p id="my-queue" class="mt-2 text-lg"></p>
+      <div class="mt-4 border-t border-dashed border-brand-200 pt-3">
+        <p class="text-sm text-slate-500">สำหรับพนักงานร้าน</p>
+        <button id="next-queue" type="button" class="mt-1 border border-brand-600 text-brand-700 px-4 py-1 hover:bg-brand-50 cursor-pointer">เรียกคิวถัดไป</button>
+      </div>
+    </section>
+
+    <!-- จองโต๊ะ -->
+    <section class="bg-white border border-brand-200 px-6 py-4">
+      <div class="flex items-center gap-3 mb-3">
+        <img src="images/table.png" alt="" class="w-14 h-14">
+        <h2 class="text-xl font-bold text-brand-700">จองโต๊ะ</h2>
+      </div>
+      <form id="booking-form" class="grid gap-3 sm:grid-cols-2">
+        <label class="grid gap-1">ชื่อผู้จอง
+          <input id="book-name" type="text" class="border border-brand-200 px-3 py-2">
+        </label>
+        <label class="grid gap-1">จำนวนคน
+          <select id="book-people" class="border border-brand-200 px-3 py-2">
+            <option value="">เลือกจำนวน</option>
+            <option value="2">2 คน</option>
+            <option value="4">4 คน</option>
+            <option value="6">6 คน</option>
+          </select>
+        </label>
+        <label class="grid gap-1">วันที่
+          <input id="book-date" type="date" class="border border-brand-200 px-3 py-2">
+        </label>
+        <label class="grid gap-1">เวลา
+          <input id="book-time" type="time" class="border border-brand-200 px-3 py-2">
+        </label>
+        <p id="book-error" class="hidden sm:col-span-2 bg-red-50 text-red-700 border border-red-200 px-3 py-2"></p>
+        <button type="submit" class="sm:col-span-2 bg-brand-600 text-white py-2 hover:bg-brand-700 cursor-pointer">ยืนยันการจอง</button>
+      </form>
+      <h3 class="font-bold mt-6 mb-2">รายการจองวันนี้</h3>
+      <ul id="booking-list" class="space-y-2"></ul>
+    </section>
+
 
     <!-- เวลาเปิดร้าน -->
     <section class="bg-white border border-brand-200 px-6 py-4">
@@ -75,5 +136,6 @@
   <footer class="text-center text-slate-500 p-4">
     <p>ร้านสมมติ สร้างด้วย HTML และ Tailwind CSS ในวิชา ว30259 ภาพอาหารเป็นภาพการ์ตูน</p>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>
